@@ -1,0 +1,38 @@
+﻿@model TDDTesting.Models.Cliente
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar Usuario</h1>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow p-4">
+                <h4 class="text-center mb-4">¿Estás seguro de que deseas eliminar este cliente?</h4>
+
+                <div class="mb-3">
+                    <p><strong>Cédula:</strong> @Model.Cedula</p>
+                    <p><strong>Apellidos:</strong> @Model.Apellidos</p>
+                    <p><strong>Nombres:</strong> @Model.Nombres</p>
+                    <p><strong>Fecha de Nacimiento:</strong> @Model.FechaNacimiento.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Correo:</strong> @Model.Mail</p>
+                    <p><strong>Teléfono:</strong> @Model.Telefono</p>
+                    <p><strong>Dirección:</strong> @Model.Direccion</p>
+                    <p><strong>Estado:</strong> @(Model.Estado ? "Activo" : "Inactivo")</p>
+                </div>
+
+                @using (Html.BeginForm("Delete", "Cliente", FormMethod.Post))
+                {
+                    @Html.HiddenFor(model => model.Codigo) <!-- Asegúrate de que el modelo tiene el campo 'Codigo' -->
+
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("Index", "Cliente")" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
